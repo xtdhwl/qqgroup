@@ -8,6 +8,7 @@ import android.view.accessibility.AccessibilityEvent;
  */
 
 public class QQService extends AccessibilityService {
+
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
 
