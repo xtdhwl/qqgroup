@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<accessibility-service
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/app_name"
-    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged"
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeViewClicked
+    |typeViewLongClicked
+    |typeViewSelected
+    |typeViewFocused
+    |typeViewTextChanged
+    |typeViewTextSelectionChanged
+    |typeViewTextTraversedAtMovementGranularity
+    |typeViewScrolled
+    |typeWindowStateChanged
+    |typeWindowContentChanged
+    |typeWindowsChanged
+    |typeNotificationStateChanged
+    |typeViewHoverEnter
+    |typeViewHoverExit
+    |typeTouchInteractionStart
+    |typeTouchInteractionEnd
+    |typeTouchExplorationGestureStart
+    |typeTouchExplorationGestureEnd
+    |typeGestureDetectionStart
+    |typeGestureDetectionEnd
+    |typeAnnouncement"
     android:accessibilityFeedbackType="feedbackAllMask"
-    android:packageNames="com.tencent.qqlite"
-    android:notificationTimeout="0"
     android:accessibilityFlags=""
-    android:canRetrieveWindowContent="true"/>
+    android:canRetrieveWindowContent="true"
+    android:description="@string/app_name"
+    android:notificationTimeout="0"
+    android:packageNames="com.tencent.qqlite" />
