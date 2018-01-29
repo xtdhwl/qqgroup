@@ -1,0 +1,29 @@
+EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 119014098; PackageName: com.tencent.qqlite
+   [ ClassName: com.tencent.mobileqq.activity.TroopAssistantActivity; Text: [群助手]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1;
+   IsEnabled: true; IsPassword: false; IsChecked: false; IsFullScreen: true; Scrollable: false; BeforeText: null; FromIndex: -1; ToIndex: -1;
+   ScrollX: -1; ScrollY: -1; MaxScrollX: -1; MaxScrollY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null ]; recordCount: 0
+EventType: TYPE_VIEW_FOCUSED; EventTime: 119014106; PackageName: com.tencent.qqlite
+    [ ClassName: com.tencent.widget.XListView; Text: []; ContentDescription: null; ItemCount: 10; CurrentItemIndex: -1; IsEnabled: true; IsPassword: false;
+     IsChecked: false; IsFullScreen: false; Scrollable: true; BeforeText: null; FromIndex: 0; ToIndex: 8; ScrollX: -1; ScrollY: -1; MaxScrollX: -1;
+      MaxScrollY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null ]; recordCount: 0
+EventType: TYPE_VIEW_CLICKED; EventTime: 119214301; PackageName: com.tencent.qqlite
+    [ ClassName: android.widget.RelativeLayout; Text: [昨天, IT软件猎头求职工作, 看色+Q2027151...:mr, 99+];
+    ContentDescription: IT软件猎头求职工作群, 6114看色+Q2027151...:mr, 昨天; ItemCount: -1; CurrentItemIndex: -1; IsEnabled: true; IsPassword: false;
+    IsChecked: false; IsFullScreen: false; Scrollable: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: -1; ScrollY: -1; MaxScrollX: -1;
+    MaxScrollY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null ]; recordCount: 1
+EventType: TYPE_VIEW_FOCUSED; EventTime: 119214767; PackageName: com.tencent.qqlite
+    [ ClassName: com.tencent.mobileqq.bubble.ChatXListView; Text: []; ContentDescription: null; ItemCount: 5; CurrentItemIndex: -1; IsEnabled: true;
+    IsPassword: false; IsChecked: false; IsFullScreen: false; Scrollable: true; BeforeText: null; FromIndex: 1; ToIndex: 4; ScrollX: -1; ScrollY: -1;
+     MaxScrollX: -1; MaxScrollY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null ]; recordCount: 0
+EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 119214798; PackageName: com.tencent.qqlite
+    [ ClassName: com.tencent.mobileqq.activity.ChatActivity; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; IsEnabled: true;
+     IsPassword: false; IsChecked: false; IsFullScreen: true; Scrollable: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: -1; ScrollY: -1;
+      MaxScrollX: -1; MaxScrollY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null ]; recordCount: 0
+EventType: TYPE_VIEW_FOCUSED; EventTime: 119214807; PackageName: com.tencent.qqlite
+ [ ClassName: com.tencent.mobileqq.bubble.ChatXListView; Text: []; ContentDescription: null; ItemCount: 5; CurrentItemIndex: -1; IsEnabled: true;
+    IsPassword: false; IsChecked: false; IsFullScreen: false; Scrollable: true; BeforeText: null; FromIndex: 1; ToIndex: 4; ScrollX: -1; ScrollY: -1;
+    MaxScrollX: -1; MaxScrollY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null ]; recordCount: 0
+EventType: TYPE_WINDOW_CONTENT_CHANGED; EventTime: 119215658; PackageName: com.tencent.qqlite
+    [ ClassName: com.android.internal.policy.impl.PhoneWindow$DecorView; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1;
+     IsEnabled: true; IsPassword: false; IsChecked: false; IsFullScreen: false; Scrollable: false; BeforeText: null; FromIndex: -1; ToIndex: -1;
+      ScrollX: -1; ScrollY: -1; MaxScrollX: -1; MaxScrollY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null ]; recordCount: 0

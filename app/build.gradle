@@ -6,7 +6,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "net.shenru.qqgroup"
-        minSdkVersion 15
+        minSdkVersion 18
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -35,8 +35,8 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.orhanobut:logger:2.1.1'
 
-    implementation "com.netflix.rxjava:rxjava-android:0.10.1"
-    implementation "com.netflix.rxjava:rxjava-core:0.5.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+    implementation "io.reactivex.rxjava2:rxjava:2.1.9"
 
 
 
