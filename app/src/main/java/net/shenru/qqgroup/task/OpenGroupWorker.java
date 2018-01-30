@@ -10,7 +10,7 @@ public class OpenGroupWorker extends BaseWorker {
 
     @Override
     public void exec() {
-        AccessibilityEvent event = getEvent();
+
 
     }
 }

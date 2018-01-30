@@ -12,6 +12,7 @@ import net.shenru.qqgroup.task.BaseWorker;
 import net.shenru.qqgroup.task.IWorker;
 import net.shenru.qqgroup.task.MainWorker;
 import net.shenru.qqgroup.task.Task;
+import net.shenru.qqgroup.task.TroopWorker;
 import net.shenru.qqgroup.util.NodeInfoUtil;
 
 import java.util.List;
@@ -33,53 +34,56 @@ public class QQManager {
     }
 
     public void onEvent(AccessibilityEvent event) {
-        Logger.i(event.toString());
+        Logger.i(event.getSource().toString());
 
         BaseWorker currentWorker = getCurrentWorker();
         if (currentWorker != null && !currentWorker.isFinish()) {
             Logger.i("ignore run:%s ", currentWorker.toString());
+
+            currentWorker.onEvent(event);
             return;
         }
 
 
-        if (event.getEventType() == TYPE_WINDOW_STATE_CHANGED) {
-            Task task = TaskManager.getInstance().getTask();
-            dispatchWork(task, event);
-        }
+        Task task = TaskManager.getInstance().getTask();
+        dispatchWork(task, event);
     }
 
 
     private void dispatchWork(Task task, AccessibilityEvent event) {
+        Logger.i("Current Task:%s", task.toString());
+
         if (QQConstant.ACTIVITY_SPLASH.equals(task.getEvent())) {
+            Logger.i("MainWorker run");
             MainWorker mainWorker = new MainWorker();
             mainWorker.setTask(task);
-            mainWorker.setEvent(event);
             mainWorker.setCallback(new IWorker.Callback() {
                 @Override
                 public void onResult(boolean success, Object result) {
-
+                    if (success) {
+                        TaskManager.getInstance().nextTask();
+                    }
                 }
             });
-            exec(mainWorker);
+            exec(mainWorker, event);
         } else if (QQConstant.ACTIVITY_TROOP.equals(task.getEvent())) {
-            MainWorker mainWorker = new MainWorker();
-            mainWorker.setTask(task);
-            mainWorker.setEvent(event);
-            mainWorker.setCallback(new IWorker.Callback() {
+            Logger.i("TroopWorker run");
+            TroopWorker worker = new TroopWorker();
+            worker.setTask(task);
+            worker.setCallback(new IWorker.Callback() {
                 @Override
                 public void onResult(boolean success, Object result) {
 
                 }
             });
-            exec(mainWorker);
+            exec(worker, event);
         }
-
-
     }
 
-    private void exec(BaseWorker worker) {
+    private void exec(BaseWorker worker, AccessibilityEvent event) {
         setCurrentWorker(worker);
         worker.exec();
+        worker.onEvent(event);
     }
 
     public BaseWorker getCurrentWorker() {

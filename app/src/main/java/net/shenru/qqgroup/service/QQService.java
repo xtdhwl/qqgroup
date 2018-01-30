@@ -23,12 +23,8 @@ public class QQService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        Log.d(TAG, event.toString());
-
         QQManager.getInstance().onEvent(event);
     }
-
-
 
 
     @Override

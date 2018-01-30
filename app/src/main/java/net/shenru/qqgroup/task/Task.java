@@ -36,4 +36,14 @@ public class Task {
     public void setEvent(String event) {
         this.event = event;
     }
+
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "preTask=" + preTask +
+                ", nextTask=" + nextTask +
+                ", event='" + event + '\'' +
+                '}';
+    }
 }

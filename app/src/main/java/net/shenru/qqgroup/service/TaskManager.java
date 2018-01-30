@@ -35,11 +35,24 @@ public class TaskManager {
         return main;
     }
 
-    public Task getTask() {
+    public synchronized Task getTask() {
         return mTask;
     }
 
-    public void setTask(Task task) {
+    private void setTask(Task task) {
         mTask = task;
+    }
+
+    public synchronized boolean nextTask() {
+        Task nextTask = mTask.getNextTask();
+        if (nextTask != null) {
+            setTask(nextTask);
+            return false;
+        }
+        return false;
+    }
+
+    public synchronized void initTask() {
+        setTask(createTask());
     }
 }

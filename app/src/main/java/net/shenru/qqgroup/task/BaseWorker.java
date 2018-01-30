@@ -14,7 +14,6 @@ public abstract class BaseWorker implements IWorker {
 
     private Callback mCallback;
     private Task task;
-    private AccessibilityEvent event;
     private boolean isFinish = false;
 
     public synchronized boolean isFinish() {
@@ -43,19 +42,8 @@ public abstract class BaseWorker implements IWorker {
         this.task = task;
     }
 
-    public AccessibilityEvent getEvent() {
-        return event;
-    }
 
-    public void setEvent(AccessibilityEvent event) {
-        this.event = event;
-    }
-
-    @Override
-    public String toString() {
-        return "BaseWorker{" +
-                "event=" + event +
-                ", isFinish=" + isFinish +
-                '}';
+    public void onEvent(AccessibilityEvent event) {
+        
     }
 }
