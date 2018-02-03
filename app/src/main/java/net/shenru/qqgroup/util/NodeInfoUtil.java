@@ -12,6 +12,24 @@ import java.util.List;
 
 public class NodeInfoUtil {
 
+    /**
+     * 获取跟root parent
+     *
+     * @param source
+     * @return
+     */
+    public static AccessibilityNodeInfo getRootParent(AccessibilityNodeInfo source) {
+        AccessibilityNodeInfo parent = source;
+        while (parent != null) {
+            AccessibilityNodeInfo s = getRootParent(parent.getParent());
+            if (s == null) {
+                break;
+            }
+            parent = s;
+        }
+
+        return parent;
+    }
 
     public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(AccessibilityNodeInfo source, String id) {
         return source.findAccessibilityNodeInfosByViewId(id);

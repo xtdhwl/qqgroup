@@ -1,0 +1,9 @@
+*.iws
+.gradle
+.idea/libraries/
+.idea/workspace.xml
+build/
+local.properties
+app/build/
+*.iml
+.DS_Store

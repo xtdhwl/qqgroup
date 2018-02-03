@@ -6,6 +6,10 @@
                                              android:layout_height="match_parent"
                                              tools:context="net.shenru.qqgroup.MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <Button
         android:id="@+id/startView"
         android:layout_width="wrap_content"
@@ -17,4 +21,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/accessibilityView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set辅助"
+        android:onClick="accessibilityClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

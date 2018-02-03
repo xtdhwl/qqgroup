@@ -1,37 +1,30 @@
 package net.shenru.qqgroup.service;
 
-import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.orhanobut.logger.Logger;
-import com.tencent.mobileqq.activity.TroopAssistantActivity;
 
-import net.shenru.qqgroup.QQConstant;
+import net.shenru.qqgroup.SettingsConstant;
 import net.shenru.qqgroup.task.BaseWorker;
 import net.shenru.qqgroup.task.IWorker;
-import net.shenru.qqgroup.task.MainWorker;
-import net.shenru.qqgroup.task.OpenChatWorker;
 import net.shenru.qqgroup.task.Task;
-import net.shenru.qqgroup.task.TroopWorker;
-import net.shenru.qqgroup.util.NodeInfoUtil;
-
-import java.util.List;
-
-import static android.view.accessibility.AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED;
+import net.shenru.qqgroup.work.settings.SelectWork;
+import net.shenru.qqgroup.work.settings.SettingMainWork;
+import net.shenru.qqgroup.work.settings.ToggleWork;
 
 /**
- * Created by xtdhwl on 28/01/2018.
+ * Created by xtdhwl on 04/02/2018.
  */
 
-public class QQManager {
+public class SettingsManager {
 
-    private static final String TAG = QQManager.class.getSimpleName();
-    public static QQManager mInstance = new QQManager();
+
+    private static final String TAG = SettingsManager.class.getSimpleName();
+    public static SettingsManager mInstance = new SettingsManager();
     private BaseWorker mCurrentWorker;
     private AccessibilityEvent mLastAccessibilityEvent;
 
-    public static QQManager getInstance() {
+    public static SettingsManager getInstance() {
         return mInstance;
     }
 
@@ -55,30 +48,12 @@ public class QQManager {
     private void dispatchWork(Task task, AccessibilityEvent event) {
         Logger.i("Current Task:%s", task.toString());
 
-        if (QQConstant.ACTIVITY_SPLASH.equals(task.getEvent())) {
-            Logger.i("MainWorker run");
-            MainWorker mainWorker = new MainWorker();
-            mainWorker.setTask(task);
-            mainWorker.setCallback(new IWorker.Callback() {
-                @Override
-                public void onResult(boolean success, Object result) {
-                    Logger.i("MainWorker onResult:%b", success);
-                    if (success) {
-                        TaskManager.getInstance().nextTask();
-                        setCurrentWorker(null);
-                        onEvent(mLastAccessibilityEvent);
-                    }
-                }
-            });
-            exec(mainWorker, event);
-        } else if (QQConstant.ACTIVITY_TROOP.equals(task.getEvent())) {
-            Logger.i("TroopWorker run");
-            TroopWorker worker = new TroopWorker();
+        if (SettingsConstant.ACTIVITY_SETTINGS.equals(task.getEvent())) {
+            SettingMainWork worker = new SettingMainWork();
             worker.setTask(task);
             worker.setCallback(new IWorker.Callback() {
                 @Override
                 public void onResult(boolean success, Object result) {
-                    Logger.i("TroopWorker onResult:%b", success);
                     if (success) {
                         TaskManager.getInstance().nextTask();
                         setCurrentWorker(null);
@@ -87,17 +62,30 @@ public class QQManager {
                 }
             });
             exec(worker, event);
-        } else if (QQConstant.ACTIVITY_CHAT.equals(task.getEvent())) {
-            Logger.i("OpenChatWorker run");
-            OpenChatWorker worker = new OpenChatWorker();
+        } else if (SettingsConstant.ACTIVITY_TOGGLE.equals(task.getEvent())) {
+            ToggleWork worker = new ToggleWork();
             worker.setTask(task);
             worker.setCallback(new IWorker.Callback() {
                 @Override
                 public void onResult(boolean success, Object result) {
-                    Logger.i("OpenChatWorker onResult:%b", success);
                     if (success) {
                         TaskManager.getInstance().nextTask();
                         setCurrentWorker(null);
+                        onEvent(mLastAccessibilityEvent);
+                    }
+                }
+            });
+            exec(worker, event);
+        } else if (SettingsConstant.ACTION_SELECT.equals(task.getEvent())) {
+            SelectWork worker = new SelectWork();
+            worker.setTask(task);
+            worker.setCallback(new IWorker.Callback() {
+                @Override
+                public void onResult(boolean success, Object result) {
+                    if (success) {
+                        TaskManager.getInstance().nextTask();
+                        setCurrentWorker(null);
+                        onEvent(mLastAccessibilityEvent);
                     }
                 }
             });

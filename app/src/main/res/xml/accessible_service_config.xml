@@ -26,4 +26,4 @@
     android:canRetrieveWindowContent="true"
     android:description="@string/app_name"
     android:notificationTimeout="0"
-    android:packageNames="com.tencent.qqlite" />
+    android:packageNames="com.tencent.qqlite,com.android.settings" />

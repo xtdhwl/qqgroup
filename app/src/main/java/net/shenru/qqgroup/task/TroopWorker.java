@@ -3,6 +3,7 @@ package net.shenru.qqgroup.task;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityWindowInfo;
 
 import com.orhanobut.logger.Logger;
 import com.tencent.mobileqq.activity.SplashActivity;
@@ -19,6 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
 import static android.content.ContentValues.TAG;
+import static android.view.accessibility.AccessibilityEvent.TYPE_VIEW_CLICKED;
 
 
 /**
@@ -65,54 +67,40 @@ public class TroopWorker extends BaseWorker {
 
         }
 
+        if (event.getEventType() == TYPE_VIEW_CLICKED) {
+            List<CharSequence> texts = event.getText();
+            if (!texts.isEmpty()) {
+                CharSequence text = texts.get(0);
+                if ("群组".equals(text)) {
+                    Logger.i("ignore TYPE_VIEW_CLICKED");
+                    isRuning = false;
+                    return;
 
+                }
+            }
+        }
         boolean b = goTroop(event);
         isRuning = false;
-//        if (b) {
-//            Observable.timer(10, TimeUnit.MILLISECONDS)
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(new Observer<Long>() {
-//                        @Override
-//                        public void onSubscribe(Disposable d) {
-//
-//                        }
-//
-//                        @Override
-//                        public void onNext(Long aLong) {
-//
-//                        }
-//
-//                        @Override
-//                        public void onError(Throwable e) {
-//
-//                        }
-//
-//                        @Override
-//                        public void onComplete() {
-//                            isRuning = false;
-//
-//                        }
-//                    });
-//        } else {
-//            isRuning = false;
-//        }
     }
 
     private boolean goTroop(AccessibilityEvent event) {
+        AccessibilityNodeInfo root;
+        if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            root = event.getSource();
+        } else {
+            root = NodeInfoUtil.getRootParent(event.getSource());
+        }
 
-        AccessibilityNodeInfo root = event.getSource().getWindow().getRoot();
-        //root.findAccessibilityNodeInfosByViewId("");
-
-        List<AccessibilityNodeInfo> nodeInfoList = root.findAccessibilityNodeInfosByViewId("tbs");
-        if (!nodeInfoList.isEmpty()) {
-            AccessibilityNodeInfo nodeInfo = nodeInfoList.get(0);
-            List<AccessibilityNodeInfo> conNodeInfoList = nodeInfo.findAccessibilityNodeInfosByText("联系人");
-            if (!conNodeInfoList.isEmpty()) {
-                AccessibilityNodeInfo cNodeInfo = conNodeInfoList.get(0);
-                AccessibilityNodeInfo parent = cNodeInfo.getParent();
-                parent.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                return true;
-            }
+        if (root == null) {
+            Logger.w("AccessibilityNodeInfo root null");
+            return false;
+        }
+//        List<AccessibilityNodeInfo> conNodeInfoList = root.findAccessibilityNodeInfosByText("联系人");
+        List<AccessibilityNodeInfo> conNodeInfoList = root.findAccessibilityNodeInfosByText("群组");
+        if (!conNodeInfoList.isEmpty()) {
+            AccessibilityNodeInfo cNodeInfo = conNodeInfoList.get(0);
+            cNodeInfo.getParent().performAction(AccessibilityNodeInfo.ACTION_CLICK);
+            return true;
         }
         return false;
     }

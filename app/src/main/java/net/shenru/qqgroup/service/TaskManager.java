@@ -23,23 +23,26 @@ public class TaskManager {
     }
 
     private Task createTask() {
-        Task main = new Task();
-        main.setEvent(QQConstant.ACTIVITY_SPLASH);
+        Task task1 = new Task();
+        task1.setEvent(QQConstant.ACTIVITY_SPLASH);
 
-        Task group = new Task();
-        main.setEvent(QQConstant.ACTIVITY_TROOP);
+        Task task2 = new Task();
+        task2.setEvent(QQConstant.ACTIVITY_TROOP);
 
+        Task task3 = new Task();
+        task3.setEvent(QQConstant.ACTIVITY_CHAT);
 
-        main.setNextTask(group);
+        task1.setNextTask(task2);
+        task2.setNextTask(task3);
 
-        return main;
+        return task1;
     }
 
     public synchronized Task getTask() {
         return mTask;
     }
 
-    private void setTask(Task task) {
+    public void setTask(Task task) {
         mTask = task;
     }
 

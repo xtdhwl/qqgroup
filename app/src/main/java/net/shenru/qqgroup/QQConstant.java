@@ -10,4 +10,6 @@ public class QQConstant {
 
     //com.tencent.mobileqq.activity.contact.troop.TroopActivity
     public static final String ACTIVITY_TROOP = "com.tencent.mobileqq.activity.contact.troop.TroopActivity";
+
+    public static final String ACTIVITY_CHAT = "com.tencent.mobileqq.activity.ChatActivity";
 }
